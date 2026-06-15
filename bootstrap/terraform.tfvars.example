@@ -1,0 +1,11 @@
+# Copy to terraform.tfvars and fill in. terraform.tfvars is gitignored.
+tenancy_ocid = "ocid1.tenancy.oc1..aaaa________"
+region       = "eu-frankfurt-1"
+
+# WIF — set after creating the token-exchange Confidential App (see README).
+# To skip WIF here and configure it in the console, set configure_wif = false.
+configure_wif      = true
+identity_domain_id = "ocid1.domain.oc1..aaaa________"
+oauth_client_id    = "________" # Client ID of the Confidential Application
+
+# github_repo defaults to jagyugyaerik/tofu-free-oke

@@ -1,0 +1,9 @@
+.terraform/
+# Bootstrap keeps LOCAL state (one-time, admin-applied). Never commit it — it
+# contains the service user's secret key material.
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+!*.tfvars.example
