@@ -39,8 +39,15 @@ The single dedicated OCI IAM user the pipeline acts as after token exchange. The
 _Avoid_: "CI user", "robot account" (pick one name: **service user**).
 
 **Bootstrap**:
-The one-time, locally-applied OpenTofu (run with the default `~/.oci/config` admin profile) that creates the **service user**, group, policy, compartment, and **WIF** trust — the prerequisites the OIDC pipeline needs before it can run.
-_Avoid_: "setup", "init".
+The one-time, single-command run, launched locally by the human admin (default `~/.oci/config` profile), that creates the **service user**, group, policy, compartment, state bucket, and **WIF** trust — and hands their identifiers to GitHub — so the OIDC pipeline can run. Automated end to end, but never run by the pipeline itself.
+_Avoid_: "setup", "init", "manual bootstrap".
+
+**Pipeline state**:
+The OpenTofu state of the infrastructure the pipeline owns (network, cluster, node pool, **Bastion**). Read and written by the **Service user**.
+
+**Bootstrap state**:
+The OpenTofu state of the **Bootstrap** itself. Holds admin-created secrets, so it is kept where the **Service user** cannot read it. Distinct from **Pipeline state**.
+_Avoid_: "the state" unqualified.
 
 ## Relationships
 
